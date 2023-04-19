@@ -4,6 +4,7 @@ import axios from "axios";
 import "./App.css";
 import Header from "./components/Header";
 import MovieScreen from "./components/MovieScreen";
+import Watchlist from "./components/Watchlist";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
@@ -24,6 +25,10 @@ function App() {
     getData();
   }, [page]);
 
+  const addMovie = (movie) => {
+    setWatchlist([...watchlist, movie])
+  }
+
   return (
     <div className="App">
       <Header />
@@ -32,8 +37,10 @@ function App() {
           movieList={movieList}
           page={page}
           setPage={setPage}
-          watchList={watchlist}
+          watchlist={watchlist}
+          addMovie={addMovie}
         />
+        <Watchlist watchlist={watchlist}/>
       </main>
     </div>
   );
