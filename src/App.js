@@ -26,8 +26,15 @@ function App() {
   }, [page]);
 
   const addMovie = (movie) => {
-    setWatchlist([...watchlist, movie])
-  }
+    setWatchlist([...watchlist, movie]);
+  };
+
+  const removeMovie = (movie) => {
+    const newState = watchlist.filter((mov) => {
+      return mov !== movie;
+    });
+    setWatchlist(newState);
+  };
 
   return (
     <div className="App">
@@ -39,8 +46,9 @@ function App() {
           setPage={setPage}
           watchlist={watchlist}
           addMovie={addMovie}
+          removeMovie={removeMovie}
         />
-        <Watchlist watchlist={watchlist}/>
+        <Watchlist watchlist={watchlist} removeMovie={removeMovie}/>
       </main>
     </div>
   );
